@@ -5,17 +5,28 @@ import logo from "../../assets/images/logo.png";
 function Layout({ children }) {
   return (
     <Box sx={{ minHeight: "100vh" }}>
-      <Stack direction={{ xs: "column", lg: "row" }}>
+      <Stack direction={{ xs: "column", md: "row" }}>
+        {/*Logo Mobile  */}
+        <Box
+          p={1}
+          sx={{
+            "@media (min-width:900px)": { display: "none" },
+          }}
+        >
+          {/* logo */}
+          <Box component={"img"} src={logo} />
+        </Box>
         {/* sidebar */}
         <Box
           sx={{
             backgroundColor: "white",
             flexBasis: "200px",
-            "@media (max-width:768px)": { display: "none" },
+            "@media (max-width:899px)": { display: "none" },
           }}
         >
           <SideBar />
         </Box>
+
         {/* Container */}
         <Box sx={{ flex: "1", bgcolor: "#DFE8DE" }}>{children}</Box>
       </Stack>
