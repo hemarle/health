@@ -21,6 +21,9 @@ function ChatCard({ key, text, type }) {
               ? "rgba(0, 178, 119, 0.8)"
               : "rgba(75, 113, 246, 0.1)",
           color: type === "receiver" ? "white" : "black",
+          "@media (max-width:768px)": {
+            maxWidth: "60%",
+          },
         }}
       >
         <p dangerouslySetInnerHTML={{ __html: text }} />

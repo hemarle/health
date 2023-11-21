@@ -7,7 +7,13 @@ function Layout({ children }) {
     <Box sx={{ minHeight: "100vh" }}>
       <Stack direction={{ xs: "column", lg: "row" }}>
         {/* sidebar */}
-        <Box sx={{ backgroundColor: "white", flexBasis: "200px" }}>
+        <Box
+          sx={{
+            backgroundColor: "white",
+            flexBasis: "200px",
+            "@media (max-width:768px)": { display: "none" },
+          }}
+        >
           <SideBar />
         </Box>
         {/* Container */}

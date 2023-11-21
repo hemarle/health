@@ -33,6 +33,9 @@ function Chat() {
           height: "calc(100vh - 140px)",
           overflowY: "scroll",
           padding: "40px 60px",
+          "@media (max-width:768px)": {
+            padding: "40px 20px",
+          },
         }}
       >
         {messages.map((message, index) => (
@@ -52,6 +55,9 @@ function Chat() {
               padding: "5px 80px 5px  20px",
               // padding: "2px 10px",
               borderRadius: "50px",
+              "@media (max-width:768px)": {
+                padding: "5px",
+              },
             }}
           >
             {/* <TextField fullWidth sx={{ outline: "none" }} /> */}
