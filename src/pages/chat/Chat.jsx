@@ -19,11 +19,13 @@ function Chat() {
   const [newResponse, setNewResponse] = useState("");
   function sendMessage(e) {
     e.preventDefault();
-    setMessages((messages) => [
-      ...messages,
-      { type: "receiver", message: newResponse },
-    ]);
-    setNewResponse("");
+    if (!!newResponse) {
+      setMessages((messages) => [
+        ...messages,
+        { type: "receiver", message: newResponse },
+      ]);
+      setNewResponse("");
+    }
   }
 
   return (
@@ -34,7 +36,8 @@ function Chat() {
           overflowY: "scroll",
           padding: "40px 60px",
           "@media (max-width:768px)": {
-            padding: "40px 20px",
+            padding: "40px 20px 0",
+            height: "calc(100vh - 300px)",
           },
         }}
       >
@@ -51,43 +54,52 @@ function Chat() {
             sx={{
               display: "flex",
               alignItems: "center",
-              backgroundColor: "white",
-              padding: "5px 80px 5px  20px",
-              // padding: "2px 10px",
-              borderRadius: "50px",
-              "@media (max-width:768px)": {
-                padding: "5px",
-              },
+              justifyContent: "center",
             }}
           >
-            {/* <TextField fullWidth sx={{ outline: "none" }} /> */}
-
-            <input
-              type="text"
-              placeholder="Type a response"
-              style={{
-                height: "40px",
-                width: "100%",
-                outline: "none",
-                border: "none",
-                borderRadius: "50px",
-                padding: "0 10px",
-              }}
-              value={newResponse}
-              onChange={(e) => setNewResponse(e.target.value)}
-            />
-            <IconButton
-              size="small"
-              type="submit"
+            <Box
               sx={{
-                // bgcolor: "rgba(0, 178, 119, 1)",
-                borderRadius: "8px",
+                display: "flex",
+                alignItems: "center",
+                backgroundColor: "white",
+                padding: "5px 5px 5px  20px",
+                // padding: "2px 10px",
+                borderRadius: "50px",
+                width: "100%",
+                maxWidth: "800px",
+                justifyContent: "center",
+                "@media (max-width:768px)": {
+                  padding: "5px",
+                },
               }}
-              onClick={sendMessage}
             >
-              {/* <SendIcon fontSize="small" color="white" /> */}
-              <img src={sendImg} />
-            </IconButton>
+              <input
+                type="text"
+                placeholder="Type a response"
+                style={{
+                  height: "40px",
+                  width: "100%",
+                  outline: "none",
+                  border: "none",
+                  borderRadius: "50px",
+                  padding: "0 10px",
+                  fontSize: "16px",
+                }}
+                value={newResponse}
+                onChange={(e) => setNewResponse(e.target.value)}
+              />
+              <IconButton
+                disabled={!newResponse}
+                type="submit"
+                sx={{
+                  bgcolor: "primary.main",
+                }}
+                onClick={sendMessage}
+              >
+                <SendIcon sx={{ color: "white" }} />
+                {/* <img src={sendImg} /> */}
+              </IconButton>
+            </Box>
           </Box>
           {/* </FormControl> */}
         </form>

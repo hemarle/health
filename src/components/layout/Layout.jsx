@@ -4,17 +4,28 @@ import ForumIcon from "@mui/icons-material/Forum";
 import logo from "../../assets/images/logo.png";
 function Layout({ children }) {
   return (
-    <Box sx={{ minHeight: "100vh" }}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        "@media (max-width:600px)": {
+          bgcolor: "#DFE8DE",
+          minHeight: "80vh",
+        },
+      }}
+    >
       <Stack direction={{ xs: "column", md: "row" }}>
         {/*Logo Mobile  */}
         <Box
-          p={1}
+          // p={1}
           sx={{
             "@media (min-width:900px)": { display: "none" },
           }}
         >
           {/* logo */}
-          <Box component={"img"} src={logo} />
+
+          <Box bgcolor="white" p={1}>
+            <Box component={"img"} src={logo} />
+          </Box>
         </Box>
         {/* sidebar */}
         <Box
