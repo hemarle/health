@@ -68,15 +68,28 @@ function Hero() {
         maxHeight: "900px",
         background: `url(${hero}) no-repeat`,
         backgroundSize: "cover",
+        "@media (max-width:600px)": {
+          height: "auto",
+          padding: "60px 20px",
+        },
       }}
     >
       <Typography
         variant="h3"
         mb={4}
         fontWeight={600}
-        fontSize={64}
-        align="center"
-        sx={{ maxWidth: "900px", lineHeight: "89px", color: "#332F2F" }}
+        fontSize={{ xs: 40, lg: 64 }}
+        align={"center"}
+        sx={{
+          maxWidth: "900px",
+          lineHeight: "89px",
+          color: "#332F2F",
+          "@media (max-width:600px)": {
+            lineHeight: "50px",
+            textAlign: "left",
+            // padding: "0 10px",
+          },
+        }}
       >
         Get answers to your medical questions with{" "}
         <span style={{ color: "#00B277" }}>myhealthpal</span>
@@ -112,7 +125,7 @@ function Features() {
       <Stack
         direction="row"
         flexWrap="wrap"
-        spacing={8}
+        spacing={{ lg: 8 }}
         justifyContent="center"
       >
         <FeatureCard
@@ -138,39 +151,42 @@ function Features() {
 }
 function FeatureCard({ avatar, avatarColor, title, content }) {
   return (
-    <Card sx={{ maxWidth: "353px" }} elevation={4}>
-      <CardHeader
-        avatar={
-          <Avatar sx={{ backgroundColor: avatarColor || "transparent" }}>
-            {avatar}
-          </Avatar>
-        }
-      />
+    <Box mb={3}>
+      {" "}
+      <Card sx={{ width: "353px" }} elevation={4} mb={2}>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ backgroundColor: avatarColor || "transparent" }}>
+              {avatar}
+            </Avatar>
+          }
+        />
 
-      <CardContent>
-        <Typography
-          variant="h4"
-          fontSize={24}
-          fontWeight={500}
-          mb={2}
-          sx={{ color: "#332F2F" }}
-        >
-          {title}
-        </Typography>
-        <Typography
-          variant="body1"
-          fontSize={14}
-          fontWeight={400}
-          mb={3}
-          sx={{ height: "70px" }}
-        >
-          {content}
-        </Typography>
-        <Button fullWidth variant="contained">
-          Get Started
-        </Button>
-      </CardContent>
-    </Card>
+        <CardContent>
+          <Typography
+            variant="h4"
+            fontSize={24}
+            fontWeight={500}
+            mb={2}
+            sx={{ color: "#332F2F" }}
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="body1"
+            fontSize={14}
+            fontWeight={400}
+            mb={3}
+            sx={{ height: "70px" }}
+          >
+            {content}
+          </Typography>
+          <Button fullWidth variant="contained">
+            Get Started
+          </Button>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
 
@@ -185,7 +201,7 @@ function About() {
         direction={{ xs: "column-reverse", md: "row" }}
         justifyContent="space-evenly"
       >
-        <Box>
+        <Box py={{ xs: 4, lg: 0 }}>
           <img src={mobileImg} alt="mobile phone" />
         </Box>
         <Box>
@@ -244,6 +260,7 @@ function About() {
 function Newsletter() {
   return (
     <Box
+      p={2}
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -267,6 +284,7 @@ function Newsletter() {
           fontWeight={500}
           sx={{ color: "#332F2F" }}
           mb={2}
+          align="center"
         >
           Subscribe to our newsletter
         </Typography>
@@ -320,14 +338,16 @@ function Footer() {
           mb={2}
           fontSize={14}
           sx={{ color: "#0A142F" }}
+          align="center"
         >
           REVOLUTIONIZING HEALTHCARE
         </Typography>
         <Typography
           variant="h5"
           fontWeight={500}
-          fontSize={40}
+          fontSize={{ xs: 30, lg: 40 }}
           mb={2}
+          align="center"
           sx={{ color: "#332F2F" }}
         >
           Request More Information
@@ -348,6 +368,8 @@ function Footer() {
         px={{ xs: 2, lg: 16 }}
         direction="row"
         justifyContent="space-between"
+        alignItems="center"
+        gap={3}
         sx={{ width: "100%" }}
       >
         <Box>
