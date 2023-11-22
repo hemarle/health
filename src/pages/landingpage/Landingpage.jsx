@@ -38,6 +38,7 @@ function Landingpage() {
 export default Landingpage;
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <Box
       p={{ xs: 2, md: 3, lg: 4 }}
@@ -52,7 +53,10 @@ function Header() {
         <img src={logo} />
       </Box>
       <Box>
-        <Button variant="contained"> Sign Up</Button>
+        <Button variant="contained" onClick={() => navigate("/chat")}>
+          {" "}
+          Sign Up
+        </Button>
       </Box>
     </Box>
   );
