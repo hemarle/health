@@ -62,6 +62,7 @@ function Header() {
   );
 }
 function Hero() {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -108,7 +109,10 @@ function Hero() {
         From Symptoms to Diagnosis, our AI Powered Chatbots are programmed to
         serve you in unique ways.
       </Typography>
-      <Button variant="contained"> Get Started</Button>
+      <Button variant="contained" onClick={() => navigate("/chat")}>
+        {" "}
+        Get Started
+      </Button>
     </Box>
   );
 }
@@ -157,9 +161,9 @@ function Features() {
 function FeatureCard({ avatar, avatarColor, title, content }) {
   const navigate = useNavigate();
   return (
-    <Box mb={3}>
+    <Box mb={{ xs: 7, lg: 3 }} mx={2}>
       {" "}
-      <Card sx={{ width: "353px" }} elevation={4} mb={2}>
+      <Card sx={{ width: "353px" }} elevation={4} mb={2} raised={4}>
         <CardHeader
           avatar={
             <Avatar sx={{ backgroundColor: avatarColor || "transparent" }}>
