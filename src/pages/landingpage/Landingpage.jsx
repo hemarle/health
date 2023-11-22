@@ -10,14 +10,22 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import hero from "../../assets/images/hero-bg.png";
-import mobileImg from "../../assets/images/Mobiles.png";
 import CheckIcon from "@mui/icons-material/Check";
+import MedicationIcon from "@mui/icons-material/Medication";
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import hero from "../../assets/images/hero-bg.png";
+import logo from "../../assets/images/logo.png";
+import mobileImg from "../../assets/images/Mobiles.png";
+import aiImg from "../../assets/icons/ai.png";
 function Landingpage() {
   return (
     <Box>
+      <Header />
       <Hero />
-
       <Features />
       <About />
       <Newsletter />
@@ -27,6 +35,27 @@ function Landingpage() {
 }
 
 export default Landingpage;
+
+function Header() {
+  return (
+    <Box
+      p={{ xs: 2, md: 3, lg: 4 }}
+      px={{ xs: 2, lg: 8 }}
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <Box>
+        <img src={logo} />
+      </Box>
+      <Box>
+        <Button variant="contained"> Sign Up</Button>
+      </Box>
+    </Box>
+  );
+}
 function Hero() {
   return (
     <Box
@@ -68,13 +97,14 @@ function Hero() {
 
 function Features() {
   return (
-    <Box p={{ xs: 2, md: 3, lg: 4 }}>
+    <Box p={{ xs: 2, md: 3, lg: 4 }} pb={{ xs: 2, lg: 8 }}>
       <Typography
         variant="h3"
         align="center"
         fontSize={40}
         fontWeight={500}
         my={4}
+        mb={6}
         sx={{ color: "#332F2F" }}
       >
         Features
@@ -85,17 +115,37 @@ function Features() {
         spacing={8}
         justifyContent="center"
       >
-        <FeatureCard />
-        <FeatureCard />
-        <FeatureCard />
+        <FeatureCard
+          avatar={<MedicationIcon sx={{ color: "rgba(133, 95, 206, 0.8)" }} />}
+          avatarColor="rgba(133, 95, 206, .1)"
+          title="Real time Diagnosis"
+          content="Real time diagnosis and recommendations."
+        />
+        <FeatureCard
+          avatar={<MonitorHeartIcon sx={{ color: "rgba(39, 174, 96, 0.8)" }} />}
+          avatarColor="rgba(39, 174, 96, .1)"
+          title="Routine medical Check up"
+          content="Promote overall health and well-being, such as maintaining a healthy diet, exercising regularly, and getting enough sleep."
+        />
+        <FeatureCard
+          avatar={<img src={aiImg} alt="robot ai" />}
+          title="Personalized AI Chatbot"
+          content="From Symptoms to Diagnosis, our AI Powered Chatbots are programmed to serve you in unique ways."
+        />
       </Stack>
     </Box>
   );
 }
-function FeatureCard() {
+function FeatureCard({ avatar, avatarColor, title, content }) {
   return (
-    <Card>
-      <CardHeader avatar={<Avatar></Avatar>} />
+    <Card sx={{ maxWidth: "353px" }} elevation={4}>
+      <CardHeader
+        avatar={
+          <Avatar sx={{ backgroundColor: avatarColor || "transparent" }}>
+            {avatar}
+          </Avatar>
+        }
+      />
 
       <CardContent>
         <Typography
@@ -105,16 +155,16 @@ function FeatureCard() {
           mb={2}
           sx={{ color: "#332F2F" }}
         >
-          Real Time diagnosis
+          {title}
         </Typography>
         <Typography
           variant="body1"
           fontSize={14}
           fontWeight={400}
-          mb={1}
-          sx={{ height: "60px" }}
+          mb={3}
+          sx={{ height: "70px" }}
         >
-          Real Time diagnosis
+          {content}
         </Typography>
         <Button fullWidth variant="contained">
           Get Started
@@ -151,16 +201,39 @@ function About() {
           </Typography>
 
           <ul>
-            <li style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-              {/* icon */}
-              <CheckIcon
-                sx={{ bgcolor: "green", color: "white", borderRadius: "5px" }}
-              />
-              <Typography variant="body2">
-                {" "}
-                Describe your primary symptom(s).
-              </Typography>
-            </li>
+            {[
+              "Describe your primary symptom(s).",
+              "The chatbot's machine learning algorithms analyze the symptom description, identifying keywords and patterns.",
+              "The chatbot processes the collected information, including symptom severity, duration, medications, allergies, and medical conditions.",
+              "Using the processed information and AI algorithms, the chatbot generates tailored recommendations, ranging from immediate medical attention to lifestyle changes or consulting a healthcare professional.",
+            ].map((text) => (
+              <li
+                key={text}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "15px",
+                  marginBottom: "18px",
+                }}
+              >
+                {/* icon */}
+                <CheckIcon
+                  sx={{ bgcolor: "green", color: "white", borderRadius: "5px" }}
+                />
+                <Typography
+                  variant="body2"
+                  fontSize={14}
+                  sx={{
+                    maxWidth: "500px",
+                    color: "#71788A",
+                    lineHeight: "22px",
+                  }}
+                >
+                  {" "}
+                  {text}
+                </Typography>
+              </li>
+            ))}
           </ul>
         </Box>
       </Stack>
@@ -222,13 +295,14 @@ function Footer() {
   return (
     <Box
       p={3}
+      py={{ xs: 3, lg: 6 }}
       sx={{
         bgcolor: "rgba(25, 159, 132, 0.1)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "20vh",
+        minHeight: "400px",
       }}
     >
       <Box
@@ -262,18 +336,73 @@ function Footer() {
           MyHealthPal, healthcare company which is developing a unique way of
           bridging the gap between patients and Doctors.
         </Typography>
-        <Box  mb={4} >
-
-        <Button variant="contained">
-          Contact Us
-        </Button>
+        <Box mb={4}>
+          <Button variant="contained">Contact Us</Button>
         </Box>
-        <Typography variant="body2" fontSize={14} color="#0A142F">© 2023 MyHealthPal, LLC</Typography>
+        <Typography variant="body2" fontSize={14} color="#0A142F">
+          © 2023 MyHealthPal, LLC
+        </Typography>
       </Box>
-      <Stack direction="row" justifyContent="space-between">
-        <Box>{/* image */}</Box>
-        <Box component="ul">
-          <li> IN</li>
+      <Stack
+        mt={8}
+        px={{ xs: 2, lg: 16 }}
+        direction="row"
+        justifyContent="space-between"
+        sx={{ width: "100%" }}
+      >
+        <Box>
+          <img src={logo} alt="health padi" />
+        </Box>
+        <Box
+          component="ul"
+          sx={{ display: "flex", gap: "18px", listStyle: "none" }}
+        >
+          <li>
+            <LinkedInIcon
+              sx={{
+                color: "#0A142F               ",
+                border: "2px solid rgba(10, 20, 47, 0.2)",
+                borderRadius: "50%",
+                padding: "10px",
+                fontSize: "45px",
+              }}
+            />
+          </li>
+          <li>
+            <InstagramIcon
+              sx={{
+                color: "#0A142F               ",
+                border: "2px solid rgba(10, 20, 47, 0.2)",
+                borderRadius: "50%",
+                padding: "10px",
+                fontSize: "45px",
+              }}
+            />
+          </li>
+          <li>
+            <FacebookIcon
+              color="white"
+              sx={{
+                color: "#0A142F               ",
+                border: "2px solid rgba(10, 20, 47, 0.2)",
+                borderRadius: "50%",
+                padding: "10px",
+                fontSize: "45px",
+              }}
+            />
+          </li>
+          <li>
+            <YouTubeIcon
+              color="white"
+              sx={{
+                color: "#0A142F               ",
+                border: "2px solid rgba(10, 20, 47, 0.2)",
+                borderRadius: "50%",
+                padding: "10px",
+                fontSize: "45px",
+              }}
+            />
+          </li>
         </Box>
       </Stack>
     </Box>
