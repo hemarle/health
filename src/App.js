@@ -8,7 +8,7 @@ import Landingpage from "./pages/landingpage/Landingpage";
 function App() {
   return (
     <Box>
-      {/* <Landingpage /> */}
+      <Landingpage />
       <Chat />
     </Box>
   );

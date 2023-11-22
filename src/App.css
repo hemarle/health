@@ -4,3 +4,6 @@
   margin: 0;
   font-family: "Euclid Circular A", sans-serif;
 }
+img {
+  max-width: 100%;
+}
