@@ -10,6 +10,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
 import MedicationIcon from "@mui/icons-material/Medication";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
@@ -150,6 +151,7 @@ function Features() {
   );
 }
 function FeatureCard({ avatar, avatarColor, title, content }) {
+  const navigate = useNavigate();
   return (
     <Box mb={3}>
       {" "}
@@ -181,7 +183,11 @@ function FeatureCard({ avatar, avatarColor, title, content }) {
           >
             {content}
           </Typography>
-          <Button fullWidth variant="contained">
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={() => navigate("/chat")}
+          >
             Get Started
           </Button>
         </CardContent>
