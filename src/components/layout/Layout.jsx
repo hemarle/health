@@ -40,6 +40,7 @@ export default Layout;
 const SideBar = () => {
 	return (
 		<>
+    {/* the chatbot */}
 			<Box sx={{ width: '100%', maxWidth: '280px' }} px={4} py={2}>
 				<Box>
 					{/* logo */}
@@ -59,6 +60,7 @@ const SideBar = () => {
 					</Stack>
 				</Box>
 			</Box>
+      {/* the news icon */}
 			<Box sx={{ width: '100%', maxWidth: '280px' }} px={4} py={2}>
 				<Box>
 					{/* News */}
