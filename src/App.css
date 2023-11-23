@@ -3,4 +3,12 @@
   padding: 0;
   margin: 0;
   font-family: "Euclid Circular A", sans-serif;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+img {
+  max-width: 100%;
+}
+::-webkit-scrollbar {
+  display: none;
 }

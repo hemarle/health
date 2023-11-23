@@ -4,29 +4,40 @@ import ForumIcon from '@mui/icons-material/Forum';
 import logo from '../../assets/images/logo.png';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 function Layout({ children }) {
-	return (
-		<Box sx={{ minHeight: '100vh' }}>
-			<Stack direction={{ xs: 'column', md: 'row' }}>
-				{/*Logo Mobile  */}
-				<Box
-					p={1}
-					sx={{
-						'@media (min-width:900px)': { display: 'none' },
-					}}
-				>
-					{/* logo */}
-					<Box component={'img'} src={logo} />
-				</Box>
-				{/* sidebar */}
-				<Box
-					sx={{
-						backgroundColor: 'white',
-						flexBasis: '200px',
-						'@media (max-width:899px)': { display: 'none' },
-					}}
-				>
-					<SideBar />
-				</Box>
+  return (
+    <Box
+      sx={{
+        minHeight: "100vh",
+        "@media (max-width:600px)": {
+          bgcolor: "#DFE8DE",
+          minHeight: "80vh",
+        },
+      }}
+    >
+      <Stack direction={{ xs: "column", md: "row" }}>
+        {/*Logo Mobile  */}
+        <Box
+          // p={1}
+          sx={{
+            "@media (min-width:900px)": { display: "none" },
+          }}
+        >
+          {/* logo */}
+
+          <Box bgcolor="white" p={1}>
+            <Box component={"img"} src={logo} />
+          </Box>
+        </Box>
+        {/* sidebar */}
+        <Box
+          sx={{
+            backgroundColor: "white",
+            flexBasis: "200px",
+            "@media (max-width:899px)": { display: "none" },
+          }}
+        >
+          <SideBar />
+        </Box>
 
 				{/* Container */}
 				<Box sx={{ flex: '1', bgcolor: '#DFE8DE' }}>{children}</Box>
