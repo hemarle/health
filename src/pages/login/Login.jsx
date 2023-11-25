@@ -1,6 +1,9 @@
 import React from "react";
 import LoginLayout from "../../components/layout/LoginLayout";
 import { useLogin } from "../../hooks/api/useAuthenticate";
+import facebookIcon from "../../assets/icons/facebook.png";
+import mailIcon from "../../assets/icons/mail.png";
+import googleIcon from "../../assets/icons/google.png";
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
@@ -78,7 +81,21 @@ function Login() {
         <Box mt={5} mb={3}>
           <Divider>Or sign in with</Divider>
         </Box>
-        <Box>{/* Icons */}</Box>
+        <Box
+          mb={3}
+          sx={{ display: "flex", justifyContent: "center", gap: "15px" }}
+        >
+          {/* Icons */}
+          <Box>
+            <img src={mailIcon} />
+          </Box>
+          <Box>
+            <img src={facebookIcon} />
+          </Box>
+          <Box>
+            <img src={googleIcon} />
+          </Box>
+        </Box>
         <Typography align="center">
           Don't Have an account?{" "}
           <span>
