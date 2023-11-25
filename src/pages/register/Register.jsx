@@ -14,7 +14,10 @@ import {
 } from "@mui/material";
 import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
+import { useRegister } from "../../hooks/api/useAuthenticate";
+
 function Register() {
+  const registerAPI = useRegister();
   return (
     <LoginLayout>
       <Box bgcolor="white" p={3} borderRadius="8px" width="100%">
@@ -22,8 +25,21 @@ function Register() {
           Create an Account
         </Typography>
         <Formik
-          initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => {}}
+          initialValues={{ username: "", email: "", password: "" }}
+          onSubmit={(values, { setSubmitting }) => {
+            setSubmitting(true);
+            registerAPI.mutate(values, {
+              onSuccess: (res) => {
+                console.log({ res });
+              },
+              onError: (error) => {
+                console.log({ error });
+              },
+              onSettled: () => {
+                setSubmitting(false);
+              },
+            });
+          }}
         >
           {({ isSubmitting, setFieldValue }) => (
             <Form>
@@ -34,7 +50,7 @@ function Register() {
                   type="text"
                   label="Full Name"
                   variant="outlined"
-                  onChange={(e) => setFieldValue("FullName", e.target.value)}
+                  onChange={(e) => setFieldValue("username", e.target.value)}
                 />
               </Box>
               <Box mb={4}>
@@ -80,6 +96,7 @@ function Register() {
                   type="password"
                   label="Password"
                   variant="outlined"
+                  onChange={(e) => setFieldValue("password", e.target.value)}
                 />
               </Box>
               <Box mb={5}>
@@ -89,8 +106,14 @@ function Register() {
                 />
               </Box>
               <Box mb={2}>
-                <Button fullWidth type="submit" variant="contained" mt={3}>
-                  Sign In
+                <Button
+                  disabled={isSubmitting}
+                  fullWidth
+                  type="submit"
+                  variant="contained"
+                  mt={3}
+                >
+                  {isSubmitting ? "Signing up..." : " Sign Up"}
                 </Button>
               </Box>
             </Form>

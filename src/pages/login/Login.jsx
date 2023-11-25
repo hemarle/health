@@ -1,9 +1,11 @@
 import React from "react";
 import LoginLayout from "../../components/layout/LoginLayout";
+import { useLogin } from "../../hooks/api/useAuthenticate";
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 function Login() {
+  const loginAPI = useLogin();
   return (
     <LoginLayout>
       <Box bgcolor="white" p={3} borderRadius="8px" width="100%">
@@ -12,9 +14,22 @@ function Login() {
         </Typography>
         <Formik
           initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => {}}
+          onSubmit={(values, { setSubmitting }) => {
+            setSubmitting(true);
+            loginAPI.mutate(values, {
+              onSuccess: (res) => {
+                console.log({ res });
+              },
+              onError: (error) => {
+                console.log({ error });
+              },
+              onSettled: () => {
+                setSubmitting(false);
+              },
+            });
+          }}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, setFieldValue }) => (
             <Form>
               <Box mb={4}>
                 <TextField
@@ -23,6 +38,7 @@ function Login() {
                   type="email"
                   label="Email"
                   variant="outlined"
+                  onChange={(e) => setFieldValue("email", e.target.value)}
                 />
               </Box>
               <Box mb={4}>
@@ -32,6 +48,7 @@ function Login() {
                   type="password"
                   label="Password"
                   variant="outlined"
+                  onChange={(e) => setFieldValue("password", e.target.value)}
                 />
               </Box>
               <Box mb={5}>
@@ -45,8 +62,14 @@ function Login() {
                 </Typography>
               </Box>
               <Box>
-                <Button fullWidth type="submit" variant="contained" mt={3}>
-                  Sign In
+                <Button
+                  disabled={isSubmitting}
+                  fullWidth
+                  type="submit"
+                  variant="contained"
+                  mt={3}
+                >
+                  {isSubmitting ? "Logging in ..." : "   Sign In"}
                 </Button>
               </Box>
             </Form>
