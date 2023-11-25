@@ -53,7 +53,7 @@ function Header() {
         <img src={logo} />
       </Box>
       <Box>
-        <Button variant="contained" onClick={() => navigate("/chat")}>
+        <Button variant="contained" onClick={() => navigate("/register")}>
           {" "}
           Sign Up
         </Button>
@@ -109,7 +109,7 @@ function Hero() {
         From Symptoms to Diagnosis, our AI Powered Chatbots are programmed to
         serve you in unique ways.
       </Typography>
-      <Button variant="contained" onClick={() => navigate("/chat")}>
+      <Button variant="contained" onClick={() => navigate("/login")}>
         {" "}
         Get Started
       </Button>
@@ -194,7 +194,7 @@ function FeatureCard({ avatar, avatarColor, title, content }) {
           <Button
             fullWidth
             variant="contained"
-            onClick={() => navigate("/chat")}
+            onClick={() => navigate("/login")}
           >
             Get Started
           </Button>
