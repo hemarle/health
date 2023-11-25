@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 function App() {
   const theme = createTheme({
     palette: {
@@ -22,8 +23,9 @@ function App() {
 
     <Routes>
       <Route path="/" element={<Landingpage />} />
-      <Route path="/chat" element={<Chat />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/chat" element={<Chat />} />
     </Routes>
     </ThemeProvider>
    

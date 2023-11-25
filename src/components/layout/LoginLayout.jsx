@@ -10,6 +10,7 @@ function LoginLayout({ children }) {
         minHeight: "100vh",
         background: "green",
       }}
+      p={{ xs: 2, lg: 6 }}
     >
       <Box sx={{ width: "100%", maxWidth: "400px", borderRadius: "5px" }}>
         {children}
