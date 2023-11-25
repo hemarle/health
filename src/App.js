@@ -7,6 +7,7 @@ import Landingpage from "./pages/landingpage/Landingpage";
 import { Routes, Route } from "react-router-dom"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Login from "./pages/login/Login";
 function App() {
   const theme = createTheme({
     palette: {
@@ -22,6 +23,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Landingpage />} />
       <Route path="/chat" element={<Chat />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
     </ThemeProvider>
    
