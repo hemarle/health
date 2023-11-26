@@ -4,8 +4,10 @@ import Layout from "../../components/layout/Layout";
 import ChatCard from "../../components/chat/ChatCard";
 import SendIcon from "@mui/icons-material/Send";
 import sendImg from "../../assets/icons/send.png";
+import { useChat } from "../../hooks/api/useChatbot";
 
 function Chat() {
+  const chatAPI = useChat();
   const [messages, setMessages] = useState([
     {
       message: "Hello",
@@ -24,6 +26,18 @@ function Chat() {
         ...messages,
         { type: "receiver", message: newResponse },
       ]);
+      chatAPI.mutate(
+        { message: newResponse },
+        {
+          onSuccess: (res) => {
+            setMessages((messages) => [
+              ...messages,
+              { type: "sender", message: res },
+            ]);
+          },
+        }
+      );
+
       setNewResponse("");
     }
   }
