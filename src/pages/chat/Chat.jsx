@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { Box, TextField, FormControl, IconButton } from "@mui/material";
+import React, { useState, useRef } from "react";
+import {
+  Box,
+  TextField,
+  FormControl,
+  Typography,
+  IconButton,
+} from "@mui/material";
 import Layout from "../../components/layout/Layout";
 import ChatCard from "../../components/chat/ChatCard";
 import SendIcon from "@mui/icons-material/Send";
@@ -8,16 +14,8 @@ import { useChat } from "../../hooks/api/useChatbot";
 
 function Chat() {
   const chatAPI = useChat();
-  const [messages, setMessages] = useState([
-    {
-      message: "Hello",
-    },
-    {
-      message:
-        " I'm here to help you understand your symptoms and provide preliminary medical advice. Please answer my questions to the best of your ability, and I will guide you through a series of questions to assess your situation.",
-      type: "sender",
-    },
-  ]);
+  const chatBottomRef = useRef(null);
+  const [messages, setMessages] = useState([]);
   const [newResponse, setNewResponse] = useState("");
   function sendMessage(e) {
     e.preventDefault();
@@ -34,6 +32,11 @@ function Chat() {
           ]),
         300
       );
+      chatBottomRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
       chatAPI.mutate(
         { message: newResponse },
         {
@@ -59,6 +62,13 @@ function Chat() {
               },
             ]);
           },
+          onSettled: () => {
+            chatBottomRef.current.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "start",
+            });
+          },
         }
       );
 
@@ -79,9 +89,30 @@ function Chat() {
           },
         }}
       >
+        <Box sx={{ display: "flex", justifyContent: "center" }} mb={3}>
+          <Box
+            bgcolor="rgba(25, 159, 132, 0.1)"
+            sx={{ maxWidth: "588px", borderRadius: "16px", padding: "16px" }}
+          >
+            <Typography
+              fontSize={14}
+              variant="body1"
+              align="center"
+              color="primary"
+            >
+              {" "}
+              Welcome to the Symptom Checker Chatbot! I'm here to help you
+              understand your symptoms and provide preliminary medical advice.
+              Please describe your symptom in detail, and I will guide you
+              through a series of questions to assess your situation.{" "}
+            </Typography>
+          </Box>
+        </Box>
         {messages.map((message, index) => (
           <ChatCard text={message.message} type={message.type} key={index} />
         ))}
+
+        <Box ref={chatBottomRef}></Box>
       </Box>
       <Box
         sx={{ backgroundColor: "#DFE8DE", width: "100%", padding: "40px 20px" }}
