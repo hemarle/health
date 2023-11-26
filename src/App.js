@@ -4,9 +4,10 @@ import { Box } from "@mui/material";
 import Layout from "./components/layout/Layout";
 import Chat from "./pages/chat/Chat";
 import Landingpage from "./pages/landingpage/Landingpage";
-import { Routes, Route } from "react-router-dom"
+import Dashboard from "./pages/dashboard/Dashboard";
+import { Routes, Route } from "react-router-dom";
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 function App() {
@@ -14,21 +15,20 @@ function App() {
     palette: {
       primary: {
         main: "#00B277",
-        contrastText: '#fff'
-      }
-    }
-  })
+        contrastText: "#fff",
+      },
+    },
+  });
   return (
     <ThemeProvider theme={theme}>
-
-    <Routes>
-      <Route path="/" element={<Landingpage />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/chat" element={<Chat />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Landingpage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/chat" element={<Chat />} />
+      </Routes>
     </ThemeProvider>
-   
   );
 }
 
