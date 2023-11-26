@@ -26,13 +26,37 @@ function Chat() {
         ...messages,
         { type: "receiver", message: newResponse },
       ]);
+      setTimeout(
+        () =>
+          setMessages((messages) => [
+            ...messages,
+            { type: "loading", message: "Fetching response..." },
+          ]),
+        300
+      );
       chatAPI.mutate(
         { message: newResponse },
         {
           onSuccess: (res) => {
+            setMessages((message) =>
+              message.filter((item) => item.type !== "loading")
+            );
             setMessages((messages) => [
               ...messages,
               { type: "sender", message: res?.reply },
+            ]);
+          },
+          onError: (res) => {
+            setMessages((message) =>
+              message.filter((item) => item.type !== "loading")
+            );
+            setMessages((messages) => [
+              ...messages,
+              {
+                type: "failed",
+                message:
+                  "Sorry An Error occurred and we couldn't process the request",
+              },
             ]);
           },
         }
