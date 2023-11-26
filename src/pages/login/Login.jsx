@@ -7,8 +7,9 @@ import googleIcon from "../../assets/icons/google.png";
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 function Login() {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const loginAPI = useLogin();
   return (
     <LoginLayout>
@@ -22,11 +23,12 @@ function Login() {
             setSubmitting(true);
             loginAPI.mutate(values, {
               onSuccess: (res) => {
-                navigate('/chat')
+                navigate("/chat");
                 console.log({ res });
               },
               onError: (error) => {
                 console.log({ error });
+                toast.error(`Error: ${error.response.data?.message}`);
               },
               onSettled: () => {
                 setSubmitting(false);
@@ -39,6 +41,7 @@ function Login() {
               <Box mb={4}>
                 <TextField
                   fullWidth
+                  required
                   placeholder="Email"
                   type="email"
                   label="Email"
@@ -48,6 +51,7 @@ function Login() {
               </Box>
               <Box mb={4}>
                 <TextField
+                  required
                   fullWidth
                   placeholder="Password"
                   type="password"

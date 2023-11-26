@@ -12,12 +12,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { toast } from "react-toastify";
 import { Formik, Form } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegister } from "../../hooks/api/useAuthenticate";
 
 function Register() {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const registerAPI = useRegister();
   return (
     <LoginLayout>
@@ -31,11 +32,12 @@ function Register() {
             setSubmitting(true);
             registerAPI.mutate(values, {
               onSuccess: (res) => {
-                navigate("/chat")
-                console.log({ res });
+                navigate("/chat");
+                // console.log({ res });
               },
               onError: (error) => {
-                console.log({ error });
+                // console.log({ error });
+                toast.error(`Error: ${error.response.data?.message}`);
               },
               onSettled: () => {
                 setSubmitting(false);
@@ -47,6 +49,7 @@ function Register() {
             <Form>
               <Box mb={4}>
                 <TextField
+                  required
                   fullWidth
                   placeholder="Full Name"
                   type="text"
@@ -57,6 +60,7 @@ function Register() {
               </Box>
               <Box mb={4}>
                 <TextField
+                  required
                   fullWidth
                   placeholder="Email"
                   type="email"
@@ -93,6 +97,7 @@ function Register() {
               </Box>
               <Box mb={4}>
                 <TextField
+                  required
                   fullWidth
                   placeholder="Password"
                   type="password"

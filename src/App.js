@@ -10,6 +10,8 @@ import { Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const theme = createTheme({
     palette: {
@@ -28,6 +30,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/chat" element={<Chat />} />
       </Routes>
+      <ToastContainer />
     </ThemeProvider>
   );
 }
