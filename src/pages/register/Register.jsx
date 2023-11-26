@@ -13,10 +13,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Formik, Form } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRegister } from "../../hooks/api/useAuthenticate";
 
 function Register() {
+  const navigate=useNavigate()
   const registerAPI = useRegister();
   return (
     <LoginLayout>
@@ -30,6 +31,7 @@ function Register() {
             setSubmitting(true);
             registerAPI.mutate(values, {
               onSuccess: (res) => {
+                navigate("/chat")
                 console.log({ res });
               },
               onError: (error) => {
