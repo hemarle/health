@@ -32,7 +32,7 @@ function Chat() {
           onSuccess: (res) => {
             setMessages((messages) => [
               ...messages,
-              { type: "sender", message: res },
+              { type: "sender", message: res?.reply },
             ]);
           },
         }
