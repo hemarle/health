@@ -6,8 +6,9 @@ import mailIcon from "../../assets/icons/mail.png";
 import googleIcon from "../../assets/icons/google.png";
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Login() {
+  const navigate=useNavigate()
   const loginAPI = useLogin();
   return (
     <LoginLayout>
@@ -21,6 +22,7 @@ function Login() {
             setSubmitting(true);
             loginAPI.mutate(values, {
               onSuccess: (res) => {
+                navigate('/chat')
                 console.log({ res });
               },
               onError: (error) => {
