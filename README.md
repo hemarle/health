@@ -34,7 +34,7 @@ BACKEND: <br>
 - Express
 - MongoDB
 - Node
-- Cylic(deployment)
+- Cyclic(deployment)
 
 ## Installation and running
 
@@ -42,4 +42,4 @@ BACKEND: <br>
 2. Run `npm install`
 3. Run Client(frontend): type `npm run start`
 
-[Live](https://healthpadi.netlify.app/)
+[Live](https://healthpal.netlify.app/)
