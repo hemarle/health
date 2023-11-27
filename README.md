@@ -1,4 +1,4 @@
-# Healthpadi
+# Healthpal
 
 ### A medical chatbot from Symptoms to Diagnosis, our AI Powered Chatbots are programmed to serve you in unique ways.
 
